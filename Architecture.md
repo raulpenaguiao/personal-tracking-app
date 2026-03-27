@@ -10,9 +10,9 @@ This document describes the full architecture of LifeLog: the Android client, th
 ┌─────────────────────────────────┐        HTTPS/443         ┌──────────────────────────────────────┐
 │         Android app             │ ───────────────────────► │              VPS                     │
 │  (Kotlin + Jetpack Compose)     │ ◄─────────────────────── │  Nginx → FastAPI → SQLite            │
-│                                 │    JSON responses +       │              ↓                       │
-│  Keystore: JWT token            │    push via ntfy          │           ntfy                       │
-└─────────────────────────────────┘                           └──────────────────────────────────────┘
+│                                 │    JSON responses +      │              ↓                       │
+│  Keystore: JWT token            │    push via ntfy         │           ntfy                       │
+└─────────────────────────────────┘                          └──────────────────────────────────────┘
 ```
 
 All communication is HTTPS. The Android app never connects on plain HTTP. Nginx terminates TLS and proxies to FastAPI on `localhost:8000`.
